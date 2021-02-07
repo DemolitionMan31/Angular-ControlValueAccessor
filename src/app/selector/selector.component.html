@@ -1,0 +1,31 @@
+<ng-select #ngSelectComponent
+		   (change)="this.change.emit($event)"
+		   (clear)="this.clear.emit()"
+		   [(ngModel)]="this.value" [clearable]="this.clearable"
+		   [closeOnSelect]="this.closeOnSelect"
+		   [disabled]="this.disabled"
+		   [items]="this.items"
+		   [markFirst]="this.markFirst"
+		   [minTermLength]="this.minTermLength"
+		   [multiple]="this.multiple"
+		   [ngClass]="{'more-dots': this.multiple && this.selectedItems && this.selectedItems.length > this.maxNumberDisplays ,'disable-control' : this.disabled}"
+		   [searchWhileComposing]="this.searchWhileComposing"
+		   [searchable]="this.searchable"
+		   bindLabel="{{this.bindLabel}}"
+		   class="w-100"
+		   notFoundText="{{this.notFoundText}}"
+		   placeholder="{{this.placeholder}}"
+		   virtualScroll=true
+>
+	<ng-template *ngIf="this.labelTemplate" ng-label-tmp let-item="item">
+		<ng-container
+				*ngTemplateOutlet="labelTemplate; context: { $implicit: item }">
+		</ng-container>
+	</ng-template>
+
+	<ng-template *ngIf="this.optionTemplate" ng-option-tmp let-item="item">
+		<ng-container
+				*ngTemplateOutlet="optionTemplate; context: { $implicit: item }">
+		</ng-container>
+	</ng-template>
+</ng-select >
